@@ -1,17 +1,16 @@
-# 🌻 Flores amarillas (versión rositas)
+# Flores amarillas
 
-Detalle web hecho con HTML, CSS y JS. Una sola página (`index.html`):
+Detalle web hecho con HTML, CSS y JS. De una sola página (`index.html`):
 
-1. **Pantalla inicial:** fondo de rositas, un cuadro central con el mensaje
-   *"lamento la distancia🤍🩷"* y el botón *"abrir🎁"*.
+1. **Pantalla inicial:** fondo de rosa con imagenes de rosas por todo el background, un cuadro central con el mensaje
+   *"lamento la distancia"* y el botón *"abrir"*.
 2. **Al pulsar "abrir":** empieza la música y, sobre el mismo fondo, se van
-   dibujando 4 girasoles y ramitas verdes de relleno. Al centro aparece el mensaje:
-   *"Estas flores amarillas son un reflejo de la alegría que traes a mi vida…"*.
+   dibujando 4 girasoles y ramas verdes de relleno. Al centro aparece un mensaje para dedicar.
 
 ## Canción
 
-Coloca el archivo **`sound/te-amo-y-mas.mp3`** ("Te amo y más", de *El libro de la vida*).
-Sin ese archivo todo funciona igual, pero sin música. Ver `sound/LEEME.txt`.
+Se integro la canción te amo y mas del Libro de la vida como un archivo mp3 **`sound/te-amo-y-mas.mp3`**.
+Sin ese archivo todo funciona igual.
 
 ## Archivos
 
