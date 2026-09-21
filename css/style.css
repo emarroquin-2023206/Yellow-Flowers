@@ -1,97 +1,336 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,500;1,900&display=swap');
-*{
-    font-family: 'Poppins',cursive;
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Poppins:wght@500;600&display=swap');
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
-body{
-    color: azure;
-    width: 100%;
-    height: 82vh;
+
+:root {
+    --vh: 1vh;
+    --rosa-oscuro: #b02f62;
+    --font-script: 'Dancing Script', 'Segoe Script', 'Brush Script MT', cursive;
+    --font-ui: 'Poppins', 'Segoe UI', Arial, sans-serif;
+}
+
+@supports (height: 1dvh) {
+    :root {
+        --vh: 1dvh;
+    }
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    overflow: hidden;
+    background-color: #fde3ec;
+    background-image: url('../img/rositas.svg');
+    background-size: 220px 220px;
+    font-family: var(--font-ui);
+}
+
+/* Un velo claro al centro para que los textos siempre se lean */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 45%, rgba(255, 255, 255, .55) 0%, rgba(255, 255, 255, 0) 62%);
+    pointer-events: none;
+}
+
+.scene {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+}
+
+/* ---------------------------------------------------------------
+   PANTALLA 1: cuadro central + botón "abrir"
+   --------------------------------------------------------------- */
+.intro {
+    position: absolute;
+    inset: 0;
+    z-index: 30;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: black;
-    /* padding-top: -30; */
+    gap: 1.8rem;
+    transition: opacity .8s ease, transform .8s ease, visibility 0s linear .8s;
 }
 
-.botones{
-    padding: 9px;
-    border-radius: 80px;
-    background-color: transparent;
+.card {
+    width: min(74vw, 320px);
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.4rem;
+    text-align: center;
+    background: rgba(255, 255, 255, .88);
+    border: 3px solid #fff;
+    border-radius: 26px;
+    box-shadow: 0 10px 30px rgba(190, 60, 110, .28), 0 0 0 6px rgba(255, 255, 255, .35);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    animation: flotar 4.5s ease-in-out infinite;
+}
+
+.card p {
+    font-family: var(--font-script);
+    font-weight: 700;
+    font-size: clamp(2.1rem, 9vw, 2.8rem);
+    line-height: 1.15;
+    color: var(--rosa-oscuro);
+}
+
+.emoji {
+    display: inline-block;
+    margin-left: .2em;
+}
+
+.abrir {
+    font-family: var(--font-ui);
+    font-weight: 600;
+    font-size: 1.25rem;
+    letter-spacing: .04em;
+    color: #fff;
+    padding: .8rem 2.2rem;
     border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    background: linear-gradient(135deg, #f27aa5, #dc4a80);
+    box-shadow: 0 8px 20px rgba(200, 60, 110, .4);
+    animation: latido 1.8s ease-in-out infinite;
+    -webkit-tap-highlight-color: transparent;
 }
 
-.botones a{
-    background-color: #0a2be9;
-    padding: 9px;
-    border-radius: 80px;
-    -webkit-border-radius: 80px;
-    -moz-border-radius: 80px;
-    -ms-border-radius: 80px;
-    -o-border-radius: 80px;
-
+.abrir:hover {
+    box-shadow: 0 12px 26px rgba(200, 60, 110, .5);
 }
 
-.botones a:focus{
-    background-color: rgb(50, 194, 194);
+.abrir:focus-visible {
+    outline: 3px solid #fff;
+    outline-offset: 3px;
 }
 
-.greetings{
-    font-size: 7rem;
-    font-weight: 900;
-}
-.greetings > span{
-    animation: glow 2.5s ease-in-out infinite;
-}
-@keyframes glow{
-    0%, 100%{
-        color: #fff;
-        text-shadow: 0 0 12px #39c6d6, 0 0 50px #39c6d6, 0 0 100px #39c6d6;
+@keyframes flotar {
+
+    0%,
+    100% {
+        transform: translateY(0);
     }
-    10%, 90%{
-        color: #111;
-        text-shadow: none;
+
+    50% {
+        transform: translateY(-8px);
     }
 }
-.greetings > span:nth-child(2){
-    animation-delay: .2s ;
-}
-.greetings > span:nth-child(3){
-    animation-delay: .4s ;
-}
-.greetings > span:nth-child(4){
-    animation-delay: .6s;
-}
-.greetings > span:nth-child(5){
-    animation-delay: .8s;
-}
-.greetings > span:nth-child(6){
-    animation-delay: 1s;
-}
 
-.description{
-    font-size: 1.5rem;
-    margin-bottom: 20px;
-}
+@keyframes latido {
 
-.button a{
-    text-decoration: none;
-    font-size: 1rem;
-    color: #111;
-}
-
-@media screen and (max-width:574px){
-    .greetings{
-        display: block;
-        font-size: 4rem;
-        font-weight: 800;
-        text-align: center;
+    0%,
+    100% {
+        transform: scale(1);
     }
-    .description{
-        font-size: 2rem;
+
+    50% {
+        transform: scale(1.06);
     }
-    
-    .button a{
-        font-size: 1rem;
+}
+
+/* Al abrir, la pantalla inicial se va */
+.is-open .intro {
+    opacity: 0;
+    transform: scale(.9);
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* ---------------------------------------------------------------
+   PANTALLA 2: mensaje al centro
+   --------------------------------------------------------------- */
+.mensaje-wrap {
+    position: absolute;
+    inset: 0;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 5vw 6vh;
+    pointer-events: none;
+}
+
+.titulo {
+    max-width: 640px;
+    padding: 1.5rem 1.8rem;
+    text-align: center;
+    font-family: var(--font-script);
+    font-weight: 700;
+    font-size: clamp(1.45rem, 4.6vw, 2.2rem);
+    line-height: 1.3;
+    color: var(--rosa-oscuro);
+    background: rgba(255, 255, 255, .78);
+    border: 2px solid #fff;
+    border-radius: 28px;
+    box-shadow: 0 10px 30px rgba(190, 60, 110, .25);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    opacity: 0;
+}
+
+.is-open .titulo {
+    animation: aparecer 1.8s ease 3.4s forwards;
+}
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(14px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ---------------------------------------------------------------
+   JARDÍN: girasoles + ramitas
+   --------------------------------------------------------------- */
+.garden {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+}
+
+.garden svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+}
+
+/* -- Girasoles (proporción del SVG: 200 x 520) -- */
+.sunflower {
+    position: absolute;
+    bottom: -1px;
+    height: var(--h);
+    aspect-ratio: 200 / 520;
+    left: calc(var(--x) - var(--h) * 0.1923);
+    z-index: 2;
+}
+
+.sunflower--1 { --x: 9.5%;  --h: calc(76 * var(--vh)); }
+.sunflower--2 { --x: 22%; --h: calc(48 * var(--vh)); z-index: 3; }
+.sunflower--3 { --x: 78%; --h: calc(54 * var(--vh)); z-index: 3; }
+.sunflower--4 { --x: 90.5%; --h: calc(70 * var(--vh)); }
+
+.sunflower__svg {
+    transform-origin: 50% 100%;
+}
+
+.is-open .sunflower__svg {
+    animation: mecer 7s ease-in-out calc(var(--start) + 7s) infinite;
+}
+
+@keyframes mecer {
+    0%   { transform: rotate(0deg); }
+    25%  { transform: rotate(1.4deg); }
+    75%  { transform: rotate(-1.4deg); }
+    100% { transform: rotate(0deg); }
+}
+
+/* -- Ramitas de relleno (proporción del SVG: 160 x 340) -- */
+.sprig {
+    position: absolute;
+    height: var(--sh);
+    aspect-ratio: 160 / 340;
+    z-index: 1;
+    transform-origin: 50% 100%;
+}
+
+.sprig--bl   { --sh: calc(46 * var(--vh)); left: -3%;  bottom: -2%; transform: rotate(-12deg); }
+.sprig--br   { --sh: calc(46 * var(--vh)); right: -3%; bottom: -2%; transform: rotate(12deg); }
+.sprig--ml   { --sh: calc(30 * var(--vh)); left: -4%;  top: 32%;    transform: rotate(68deg); }
+.sprig--mr   { --sh: calc(30 * var(--vh)); right: -4%; top: 30%;    transform: rotate(-68deg); }
+.sprig--tl   { --sh: calc(26 * var(--vh)); left: 3%;   top: -3%;    transform: rotate(168deg); transform-origin: 50% 50%; }
+.sprig--tr   { --sh: calc(26 * var(--vh)); right: 3%;  top: -3%;    transform: rotate(-168deg); transform-origin: 50% 50%; }
+.sprig--low1 { --sh: calc(26 * var(--vh)); left: 38%;  bottom: -2%; transform: rotate(-8deg); }
+.sprig--low2 { --sh: calc(26 * var(--vh)); left: 56%;  bottom: -2%; transform: rotate(9deg); }
+
+/* ---------------------------------------------------------------
+   Animación de "dibujado" (trazos que se van pintando)
+   Todos los trazos usan pathLength="1", así que dash = 1.
+   --d = retraso, --t = duración (definidos desde garden.js)
+   --------------------------------------------------------------- */
+.draw {
+    stroke-dasharray: 1 1;
+    stroke-dashoffset: 1;
+    fill-opacity: 0;
+}
+
+.is-open .draw {
+    animation:
+        trazar var(--t, .6s) ease-in-out var(--d, 0s) forwards,
+        rellenar .7s ease calc(var(--d, 0s) + var(--t, .6s) * .8) forwards;
+}
+
+@keyframes trazar {
+    to { stroke-dashoffset: 0; }
+}
+
+@keyframes rellenar {
+    to { fill-opacity: 1; }
+}
+
+/* Semillas del centro: aparecen una a una desde el medio */
+.seed {
+    transform: scale(0);
+    transform-box: fill-box;
+    transform-origin: center;
+}
+
+.is-open .seed {
+    animation: brotar .35s cubic-bezier(.3, 1.6, .5, 1) var(--d, 0s) forwards;
+}
+
+@keyframes brotar {
+    to { transform: scale(1); }
+}
+
+/* ---------------------------------------------------------------
+   Pantallas verticales (celular)
+   --------------------------------------------------------------- */
+@media (orientation: portrait), (max-width: 700px) {
+    .mensaje-wrap {
+        padding-bottom: 18vh;
+    }
+
+    .sunflower--1 { --x: 14%; --h: min(calc(36 * var(--vh)), 84vw); }
+    .sunflower--2 { --x: 38%; --h: min(calc(27 * var(--vh)), 64vw); }
+    .sunflower--3 { --x: 62%; --h: min(calc(31 * var(--vh)), 74vw); }
+    .sunflower--4 { --x: 86%; --h: min(calc(38 * var(--vh)), 90vw); }
+
+    .sprig--bl   { --sh: calc(30 * var(--vh)); }
+    .sprig--br   { --sh: calc(30 * var(--vh)); }
+    .sprig--ml   { --sh: calc(24 * var(--vh)); top: 40%; }
+    .sprig--mr   { --sh: calc(24 * var(--vh)); top: 38%; }
+    .sprig--tl   { --sh: calc(20 * var(--vh)); }
+    .sprig--tr   { --sh: calc(20 * var(--vh)); }
+    .sprig--low1 { --sh: calc(18 * var(--vh)); left: 27%; }
+    .sprig--low2 { --sh: calc(18 * var(--vh)); left: 50%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .card,
+    .abrir,
+    .is-open .sunflower__svg {
+        animation: none;
     }
 }

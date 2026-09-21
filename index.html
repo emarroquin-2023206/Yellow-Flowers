@@ -7,26 +7,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="img/flowers.png" type="image/x-icon">
-    <title>Flowers</title>
+    <title>Para ti 🌻</title>
 </head>
 
-<body>
-    <div class="greetings">
-        <span>H</span>
-        <span>o</span>
-        <span>l</span>
-        <span>a</span>
-        <span>!</span>
-    </div>
-    <div class="description">
-        <span>ESTE DETALLE ES PARA TI :)</span>
-    </div>
-    <div class="button">
-        <button class="botones">
-            <a href="flower.html" style="color: #fff;">CLICK AQUÍ</a>
-        </button>
-    </div>
+<body class="is-intro">
+    <!-- Canción: "Te amo y más" (El libro de la vida). Ver sound/LEEME.txt -->
+    <audio id="musica" src="sound/te-amo-y-mas.mp3" preload="auto"></audio>
 
+    <main class="scene">
+
+        <!-- Jardín: se dibuja con garden.js cuando se pulsa "abrir" -->
+        <div class="garden" id="garden" aria-hidden="true"></div>
+
+        <!-- Pantalla 2: mensaje al centro -->
+        <div class="mensaje-wrap">
+            <h1 class="titulo">Hola, mi amor: <br> <br>
+                Hoy por hoy no puedo darte todo lo que quisiera, pero te entrego estas flores como una muestra y reflejo de mi amor, alegría y el cariño que traes a mi vida.
+                Desde que te conozco he mejorado como persona y como pareja; tú me ayudas a crecer día a día.<br><br>
+                 Gracias por ser la luz en mi camino.</h1>
+        </div>
+
+        <!-- Pantalla 1: cuadro central + botón -->
+        <section class="intro" id="intro">
+            <div class="card">
+                <p>Lamento la Distancia<span class="emoji">🤍🩷</span></p>
+            </div>
+            <button class="abrir" id="abrir" type="button">Abrir<span class="emoji">🎁</span></button>
+        </section>
+
+    </main>
+
+    <script src="garden.js"></script>
+    <script src="main.js"></script>
 </body>
 
 </html>
